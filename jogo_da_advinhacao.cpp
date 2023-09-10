@@ -1,5 +1,8 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
+
 
 int main(){
     cout << "************************************" << endl;
@@ -24,7 +27,8 @@ int main(){
         max_tentativas = 5;
     }
 
-    int NUMERO_SECRETO = 67;
+    srand(time(NULL));
+    int NUMERO_SECRETO = rand() % 100;
 
     bool nao_acertou = true;
     int tentativas = 0;
