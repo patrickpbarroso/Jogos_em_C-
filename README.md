@@ -6,5 +6,4 @@ Esse repositório contém a implementação de 2 jogos em c++, o jogo da forca e
 
 ```bash
 $ g++ --version
-
-Para instalar
+```
