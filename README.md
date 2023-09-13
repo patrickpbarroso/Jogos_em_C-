@@ -16,3 +16,5 @@ E para rodar os jogos
 ```
 $ make jogar
 ```
+
+Divirta-se :D
