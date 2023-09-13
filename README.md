@@ -7,3 +7,12 @@ Esse repositório contém a implementação de 2 jogos em c++, o jogo da forca e
 ```bash
 $ g++ --version
 ```
+
+Uma vez que o c++ esteja instalado, basta digitar o seguinte comando para compilar os jogos
+```
+$ make atualizar
+```
+E para rodar os jogos
+```
+$ make jogar
+```
