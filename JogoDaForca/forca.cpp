@@ -3,15 +3,17 @@
 #include <vector>
 #include <map>
 #include <fstream>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
-const string PALAVRA_SECRETA ="MELANCIA";
+string palavra_secreta;
 map<char, bool> chutou;
 vector<char> chutes_errados;
 
 bool letra_existe(char chute){
     // Método que verifica se a letra chutada existe na palavra secreta
-     for(char letra : PALAVRA_SECRETA){
+     for(char letra : palavra_secreta){
             if(chute == letra){
                 return true;
             }
@@ -21,7 +23,7 @@ bool letra_existe(char chute){
 
 bool nao_acertou(){
     // Método que verifica se a pessoa não acertou alguma letra
-    for(char letra : PALAVRA_SECRETA){
+    for(char letra : palavra_secreta){
         if(!chutou[letra]){
             return true;
         }
@@ -54,7 +56,7 @@ void imprime_chutes_errados(){
 
 void imprime_palavra(){
     // Método para imprimir palavras com chutes certos e espaços
-    for(char letra: PALAVRA_SECRETA){
+    for(char letra: palavra_secreta){
         if(chutou[letra]){
             cout << letra << " ";
         }
@@ -85,7 +87,7 @@ void chutar(){
     cout << endl;
 }
 
-void le_arquivo(){
+vector<string> le_arquivo(){
     // Método para ler palavras do arquivo txt
     ifstream arquivo;
     arquivo.open("palavras.txt");
@@ -93,13 +95,23 @@ void le_arquivo(){
     int quantidade_palavras;
     arquivo >> quantidade_palavras;
 
-    cout << "O arquivo possui " << quantidade_palavras << " palavras" << endl;
+    vector<string> palavras_do_arquivo;
 
     for(int i=0;i<quantidade_palavras;i++){
         string palavra_lida;
         arquivo >> palavra_lida;
-        cout << "Na linha " << i << ": " << palavra_lida << endl;
+        palavras_do_arquivo.push_back(palavra_lida);
     }
+    return palavras_do_arquivo;
+}
+
+void sorteia_palavra(){
+    vector<string> palavras = le_arquivo();
+
+    srand(time(NULL));
+    int indice_sorteado = rand() % palavras.size();
+
+    palavra_secreta = palavras[indice_sorteado];
 }
 
 int main(){
@@ -107,6 +119,9 @@ int main(){
 
     // Lê banco de palavras do jogo
     le_arquivo();
+
+    // Sorteia palavra escolhida
+    sorteia_palavra();
     // O jogo se repete enquanto o usuário não acertar ou perder enforcado
     while(nao_acertou() && nao_enforcou()){
         // Mostra chutes errados, palavra com chutes certos e espaços e recebe chutes
@@ -119,13 +134,13 @@ int main(){
 
     // Usuário venceu o jogo: Acertou a palavra secreta
     if (!nao_acertou()){
-        cout << "Parabéns! Você ganhou. A palavra secreta era " << PALAVRA_SECRETA 
+        cout << "Parabéns! Você ganhou. A palavra secreta era " << palavra_secreta 
         << endl;
     }
     // Usuário perdeu o jogo: Errou a palavra secreta
     else
     {
         cout << "Você perdeu e foi terrivelmente enforcado. A palavra secreta era "
-        << PALAVRA_SECRETA << endl;
+        << palavra_secreta << endl;
     }
 }
