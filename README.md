@@ -1,6 +1,10 @@
-# Jogos_em_Cpp
-Repositório para armazenar Jogos da advinhação e forca construídos em c++ com o objetivo de praticar a linguagem na construção de projetos. 
+# Jogos em C++
+Esse repositório contém a implementação de 2 jogos em c++, o jogo da forca e o jogo da advinhação.
 
 ## Executando
-Obs. É necessário ter o c++ instalado na máquina para rodar os jogos. Para verificar, basta rodar o seguinte comando no terminal
+**Obs. É necessário ter o c++ instalado na máquina para rodar os jogos. Para verificar, basta rodar o seguinte comando no terminal. Se o resultado for a versão do c++, então está instalado. Porém, se o comando não for reconhecido, é necessário instalar.**
+
+```bash
 $ g++ --version
+
+Para instalar
