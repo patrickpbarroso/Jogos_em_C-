@@ -26,7 +26,7 @@ int main(){
     else {
         max_tentativas = 5;
     }
-
+    // Define aleatoriamente o número secreto
     srand(time(NULL));
     int NUMERO_SECRETO = rand() % 100;
 
@@ -47,6 +47,7 @@ int main(){
         bool acertou = chute == NUMERO_SECRETO;
         bool maior = chute > NUMERO_SECRETO;
 
+        // Classifica o chute em comparação ao número secreto
         if(acertou){
             cout << "Parabéns! Você acertou o número secreto." << endl;
             nao_acertou = false;
