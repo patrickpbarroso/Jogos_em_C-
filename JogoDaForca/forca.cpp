@@ -5,156 +5,23 @@
 #include <fstream>
 #include <ctime>
 #include <cstdlib>
+#include "nao_acertou.cpp"
+#include "letra_existe.cpp"
+#include "nao_enforcou.cpp"
+#include "imprime_cabecalho.cpp"
+#include "imprime_chutes_errados.cpp"
+#include "imprime_palavra.cpp"
+#include "chutar.cpp"
+#include "le_arquivo.cpp"
+#include "sorteia_palavra.cpp"
+#include "salva_arquivo.cpp"
+#include "adiciona_palavra.cpp"
+
 using namespace std;
 
 string palavra_secreta;
 map<char, bool> chutou;
 vector<char> chutes_errados;
-
-bool letra_existe(char chute){
-    // Método que verifica se a letra chutada existe na palavra secreta
-     for(char letra : palavra_secreta){
-            if(chute == letra){
-                return true;
-            }
-     }
-     return false;
-}
-
-bool nao_acertou(){
-    // Método que verifica se a pessoa não acertou alguma letra
-    for(char letra : palavra_secreta){
-        if(!chutou[letra]){
-            return true;
-        }
-    }
-    // Todas as letras foram acertadas
-    return false;
-}
-
-bool nao_enforcou(){
-    return chutes_errados.size() < 5;
-}
-
-void imprime_cabecalho(){
-    // Método que imprime cabeçalho do jogo
-    cout << "********************" << endl;
-    cout << "** Jogo da Forca ***" << endl;
-    cout << "********************" << endl;
-    cout << endl;
-
-}
-
-void imprime_chutes_errados(){
-    // Método que imprime chutes errados
-    cout << "Chutes errados: ";
-        for(char letra: chutes_errados){
-            cout << letra << " ";
-        }
-        cout << endl;
-}
-
-void imprime_palavra(){
-    // Método para imprimir palavras com chutes certos e espaços
-    for(char letra: palavra_secreta){
-        if(chutou[letra]){
-            cout << letra << " ";
-        }
-        else{
-            cout << "_ ";
-        }
-    }
-    cout << endl;
-}
-
-void chutar(){
-    // Método para receber chutes do usuário e analisar se ele acertou ou não
-    cout << "Seu chute: ";
-
-        char chute;
-        cin >> chute;
-
-        chutou[chute] = true;
-
-        // Verifica se o chute existe na palavra secreta
-        if(letra_existe(chute)){
-            cout << "Você acertou! Seu chute está na palavra." << endl;
-        }
-        else{
-            cout << "Você errou! Seu chute não está na palavra." << endl;
-            chutes_errados.push_back(chute);
-        }
-    cout << endl;
-}
-
-vector<string> le_arquivo(){
-    // Método para ler palavras do arquivo txt
-    ifstream arquivo;
-    arquivo.open("palavras.txt");
-
-    if(arquivo.is_open()){
-        int quantidade_palavras;
-        arquivo >> quantidade_palavras;
-
-        vector<string> palavras_do_arquivo;
-
-        for(int i=0;i<quantidade_palavras;i++){
-            string palavra_lida;
-            arquivo >> palavra_lida;
-            palavras_do_arquivo.push_back(palavra_lida);
-        }
-
-        arquivo.close();
-        return palavras_do_arquivo;
-    }
-    else
-    {
-        cout << "Não foi possível acessar o banco de palavras. " << endl;
-        exit(0);
-    }
-}
-
-void sorteia_palavra(){
-    // Método que sorteia palavra secreta para o jogo
-    vector<string> palavras = le_arquivo();
-
-    srand(time(NULL));
-    int indice_sorteado = rand() % palavras.size();
-
-    palavra_secreta = palavras[indice_sorteado];
-}
-
-void salva_arquivo(vector<string> nova_lista_de_palavras){
-    // Método que salva arquivo com palavra nova
-    ofstream arquivo;
-    arquivo.open("palavras.txt");
-    if(arquivo.is_open()){
-        arquivo << nova_lista_de_palavras.size();
-
-        for(string palavra: nova_lista_de_palavras){
-            arquivo << palavra << endl;
-        }
-
-        arquivo.close();
-    }
-    else
-    {
-        cout << "Não foi possível acessar o banco de palavras. " << endl;
-        exit(0);
-    }
-}
-
-void adiciona_palavra(){
-    // Método que salva palavra do usuário no banco de palavras
-    cout << "Digite a nova palavra, usando letras maiúsculas. " << endl;
-    string nova_palavra;
-    cin >> nova_palavra;
-
-    vector<string> lista_palavras = le_arquivo();
-    lista_palavras.push_back(nova_palavra);
-
-    salva_arquivo(lista_palavras);
-}
 
 int main(){
     imprime_cabecalho();
