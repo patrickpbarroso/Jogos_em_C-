@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
 
-std::vector<char> chutes_errados;
+extern std::vector<char> chutes_errados;
 
 void imprime_chutes_errados(){
     // Método que imprime chutes errados

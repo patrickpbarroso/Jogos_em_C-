@@ -1,12 +1,13 @@
-#include <vector>
-#include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include <string>
+#include "le_arquivo.hpp"
 
 std::vector<std::string> le_arquivo(){
     // Método para ler palavras do arquivo txt
     std::ifstream arquivo;
-    arquivo.open("palavras.txt");
+    arquivo.open("../palavras.txt");
 
     if(arquivo.is_open()){
         int quantidade_palavras;

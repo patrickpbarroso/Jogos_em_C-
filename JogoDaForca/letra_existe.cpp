@@ -1,6 +1,6 @@
 #include <string>
 
-std::string palavra_secreta;
+extern std::string palavra_secreta;
 
 bool letra_existe(char chute){
     // Método que verifica se a letra chutada existe na palavra secreta

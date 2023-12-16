@@ -1,8 +1,7 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include "le_arquivo.cpp"
-#include "salva_arquivo.cpp"
+#include "le_arquivo.hpp"
+#include "salva_arquivo.hpp"
+#include "adiciona_palavra.hpp"
 
 void adiciona_palavra(){
     // Método que salva palavra do usuário no banco de palavras

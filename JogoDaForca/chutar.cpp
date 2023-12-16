@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "letra_existe.cpp"
+#include "letra_existe.hpp"
+#include "chutar.hpp"
 
-std::vector<char> chutes_errados;
-std::map<char, bool> chutou;
+extern std::vector<char> chutes_errados;
+extern std::map<char, bool> chutou;
 
 void chutar(){
     // Método para receber chutes do usuário e analisar se ele acertou ou não
